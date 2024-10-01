@@ -1,0 +1,14 @@
+@import "bootstrap/scss/bootstrap";
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.product-card > img {
+    height: 415px;
+    width: 415px;
+}
