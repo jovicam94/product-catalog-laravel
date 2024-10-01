@@ -41,4 +41,15 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function john_doe_state()
+    {
+        return $this->state(function () {
+            return [
+                'name' => 'John Doe',
+                'email' => 'john@laravel.test',
+                'is_admin' => true
+            ];
+        });
+    }
 }
