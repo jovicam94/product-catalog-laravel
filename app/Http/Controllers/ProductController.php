@@ -38,7 +38,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::with(['comments' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->findOrFail($id);
+
+        return view('products.show', [
+            'product' => $product
+        ]);
     }
 
     /**
