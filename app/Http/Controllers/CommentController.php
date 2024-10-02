@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
+use App\Models\Comment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -25,9 +28,21 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $product = Product::with(['comments' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->findOrFail($request->product_id);
+
+        $product->comments()
+            ->create($validatedData);
+
+        return redirect()
+            ->route('products.show', $product->id)
+            ->with('success', 'Comment added successfully!');
+
     }
 
     /**
@@ -35,7 +50,6 @@ class CommentController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
