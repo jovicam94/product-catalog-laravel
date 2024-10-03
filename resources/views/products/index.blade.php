@@ -7,16 +7,16 @@
         <div class="row">
             @foreach ($products as $product)
                 <div class="col-md-4 mb-4">
-                    <div class="card product-card h-100 shadow-sm">
-                        <img
-                            src="{{ asset('images/products/' . $product->id . '.jpg') }}" class="card-img-top" alt="{{ $product['title'] }}">
-
-                        {{--                        <img src="{{ asset('images/products/' . $product->id . '.jpg') }}" class="card-img-top" alt="{{ $product['title'] }}">--}}
-                        <div class="card-body text-center">
-                            <h5 class="card-title font-weight-bold">{{ $product->title }}</h5>
-                            <p class="card-text text-muted">{{ \Illuminate\Support\Str::limit($product->description, 40) }}</p>
+                    <a class="product-link" href="{{ route('products.show', ['product' => $product->id]) }}">
+                        <div class="card product-card h-100 shadow-sm">
+                            <img
+                                src="https://picsum.photos/200/300?random={{ $product->id }}" class="card-img-top" alt="{{ $product['title'] }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title font-weight-bold">{{ $product->title }}</h5>
+                                <p class="card-text text-muted">{{ Str::limit($product->description, 40) }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
