@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
+use App\Models\CommentStatus;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -74,5 +75,35 @@ class CommentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function approveComment($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        $comment->comment_status_id = CommentStatus::STATUS_APPROVED;
+        $comment->save();
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Comment approved successfully!'
+            );
+    }
+
+    public function denyComment($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        $comment->comment_status_id = CommentStatus::STATUS_DENIED;
+        $comment->save();
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Comment denied successfully!'
+            );
     }
 }

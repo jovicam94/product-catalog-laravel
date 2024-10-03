@@ -28,3 +28,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Auth::routes();
 
+Route::prefix('comments')
+    ->name('comments.')
+    ->middleware(['auth', 'admin'])->group(function () {
+        Route::post('{id}/approve', [CommentController::class, 'approveComment'])->name('approve');
+        Route::post('{id}/deny', [CommentController::class, 'denyComment'])->name('deny');
+});
