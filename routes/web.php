@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
@@ -18,9 +19,12 @@ use App\Http\Controllers\CommentController;
 Route::get('/', [ProductController::class, 'index'])
     ->name('home');;
 
-Route::get('/products', function () {
-    return view('products.index');
-});
-
 Route::resource('products', ProductController::class);
 Route::resource('comments', CommentController::class);
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+Auth::routes();
+
