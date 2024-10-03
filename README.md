@@ -167,3 +167,5 @@ password: password
 ```
 
 • Default password for all seed users is 'password'.
+
+• In project root folder, you have Product catalog.postman_collection.json file for API testing in Postman (Postman collection file).
