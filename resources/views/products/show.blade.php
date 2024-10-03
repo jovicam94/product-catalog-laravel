@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="card mb-4">
-                    <img src="{{ asset('images/products/' . $product->id . '.jpg') }}"
+                    <img src="https://picsum.photos/200/300?random={{ $product->id }}"
                          class="card-img-top"
                          alt="{{ $product->name }}"
                          style="height: 300px; object-fit: cover;">
