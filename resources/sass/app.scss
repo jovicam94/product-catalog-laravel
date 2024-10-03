@@ -16,3 +16,15 @@ footer {
 .pagination {
     margin-left: 10px;
 }
+
+.auth-user, .admin-dashboard {
+    white-space: nowrap;
+}
+
+.auth-user {
+    font-weight: bold;
+}
+
+.product-link {
+    text-decoration: none;
+}
