@@ -23,7 +23,7 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             'author' => 'required',
-            'email' => 'required|min:10',
+            'email' => 'required|email',
             'comment' => 'required|string|max:500'
         ];
     }
